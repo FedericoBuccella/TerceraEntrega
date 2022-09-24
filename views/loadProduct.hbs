@@ -1,0 +1,24 @@
+<h1>Producto cargado correctamente.</h1>
+
+<h3>
+    Producto: {{body.title}}
+</h3>
+<h3>
+    Precio: {{body.price}}
+</h3>
+<button class="btn btn-danger my-5" onclick="logout()">LOGOUT</button>
+<button class="btn btn-danger my-5" onclick="productos()">PRODUCTOS</button>
+
+<script>
+    function redireccionar(pagina) {
+        location.href = pagina;
+    } 
+    function logout() {
+        console.log('logout');
+        redireccionar('/api/logout')
+    }
+       function productos() {
+        console.log('productos');
+        redireccionar('/api/productos')
+    }
+</script>

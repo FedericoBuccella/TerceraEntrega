@@ -33,7 +33,6 @@ app.set("view engine", ".hbs");
 app.use(express.static(__dirname + "/views"));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use("/api", rutas);
 
 app.use(
   session({
@@ -75,7 +74,11 @@ const registerStrategy = new LocalStrategy(
                   password: hashPassword(password),
                   email: req.body.email,
                   firstName: req.body.firstName,
-                  lastName: req.body.lastName
+                  lastName: req.body.lastName,
+                  address: req.body.address,
+                  edad: req.body.edad,
+                  phone: req.body.phone,
+                  avatar: req.body.image 
               }
               const crearUsuario = await Usuario.create(nuevoUsuario)
               return done(null, crearUsuario)
@@ -121,7 +124,7 @@ if (iscluster && cluster.isPrimary) {
     cluster.fork();
   });
 } else {
-  app.use("/", rutas);
+  app.use("/api", rutas);
       
       const URL = process.env.URL_MONGO;
       mongoose.connect( URL,{ useNewUrlParser: true, useUnifiedTopology: true }, (err) => {

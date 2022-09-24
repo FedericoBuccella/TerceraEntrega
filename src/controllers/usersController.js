@@ -8,7 +8,6 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 export const getLogin = (req, res) => {
   if (req.isAuthenticated()) {
     let user = req.user;
-    //console.log("user logueado");
     if (user.username === "admin") {
       res.render("post-product", {
         title: user.title,
@@ -16,12 +15,28 @@ export const getLogin = (req, res) => {
         thumbnail: user.thumbnail
       })
     }else{
-      res.render("catalogo")
+      res.redirect("/api/home")
     } 
   }else {
         console.log("user NO logueado");
         res.sendFile(path.join(__dirname, "../../views/login.html"));
   }
+}
+
+export const getUserInfo = (req, res)=>{ 
+  const {email, firstName, address, edad, phone, avatar} = req.user
+  res.render('infoUser',{email, firstName, address, edad, phone, avatar})
+}
+
+export const getHome = (req, res) => {
+  let user = req.user
+  res.render("login-ok", {
+    usuario: user.username,
+    nombre: user.firstName,
+    apellido: user.lastName,
+    email: user.email,
+    avatar: user.avatar
+  })
 }
 
 export const getSignup = (req, res) => {
@@ -30,12 +45,13 @@ export const getSignup = (req, res) => {
 
 export const postRegister = (req, res) =>  {
     let user = req.user
-    res.sendFile(path.join(__dirname, "../../views/index.html"))
+    console.log(user)
+    res.sendFile(path.join(__dirname, "../../views/register-ok.html"))
 }
 
 export const postLogin = (req, res) => {
     let user = req.user
-    res.sendFile(path.join(__dirname, "../../views/index.html"))
+    res.redirect('/api/home')
 }
 
 export const getFailsignup = (req, res) => {
@@ -51,14 +67,14 @@ export const getFaillogin = (req, res) => {
 
 export const getLogout = (req, res) => {
   req.logout((e)=>{console.log(e)});
-  res.sendFile(path.join(__dirname, "../views/index.html"))
+  res.sendFile(path.join(__dirname, "../../views/login.html"))
 }
 
 export function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.redirect("/login");
+    res.redirect("/api/login");
   }
 }
 

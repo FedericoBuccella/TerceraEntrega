@@ -2,13 +2,13 @@ import {ProductoDao} from '../daos/index.js'
 
 export const getProductos = async (req, res) => {
     const verProductos = await ProductoDao.getAll()
-    console.log(verProductos)
-    res.render('catalogo.hbs', {verProductos})
+    res.render('catalogo', {verProductos})
 }
 
 export const postProductos = async (req, res) => {
     const {title, description, code, price, thumbnail, stock} = req.body 
     const elemento = await ProductoDao.newProduct(title, description, code, price, thumbnail, stock)
+    console.log("AAAAAAAAAA", elemento)
     res.json(elemento)
 }
 
@@ -36,4 +36,9 @@ export const deleteProduct = async (req, res) => {
     if(!id){return res.json({ error: "El parámetro no es un número o el id no existe" })}
     await ProductoDao.deleteById(id)
     res.json(await ProductoDao.getAll())
+}
+
+export const loadProduct = async (req, res) => {
+    const body = req.body
+    res.render("loadProduct", {body} )
 }

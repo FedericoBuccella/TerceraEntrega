@@ -9,7 +9,7 @@
 <body>
     <h1>Pantalla de login:</h1>
 
-    <form action="/login" method="post">
+    <form action="/api/login" method="post">
         <input type="text" placeholder="Username" name="username">
         <input type="password" placeholder="Password" name="password">
         <input type="submit" value="Log in">
@@ -23,7 +23,7 @@
         }
 
         function goSignup() {
-        redireccionar('/register');
+        redireccionar('/api/register');
         }
     </script>
 </body>

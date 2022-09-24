@@ -8,12 +8,16 @@
 </head>
 <body>
     <h1>Pagina de registro:</h1>
-    <form action="/register" method="post">
-        <input type="text" placeholder="Ingrese un usuario" name="username" >
-        <input type="password" placeholder="Ingrese una password" name="password">
-        <input type="email" placeholder="mail@mail.com" name="email">
-        <input placeholder="FirstName" type="text" name='firstName'>
-        <input placeholder="LastName" type="text" name='lastName' >
+    <form action="/api/register" method="post">
+        Usuario: <input type="text" placeholder="Ingrese un usuario" name="username" >
+        Password: <input type="password" placeholder="Ingrese una password" name="password">
+        Email: <input type="email" placeholder="mail@mail.com" name="email">
+        Nombre: <input placeholder="FirstName" type="text" name='firstName'>
+        Apellido: <input placeholder="lastName" type="text" name='lastName'>
+        Direccion: <input placeholder="Direccion" type="text" name='address' >
+        Telefono: <input placeholder="Telefono" type="tel" name='phone' >
+        Edad: <input placeholder="Edad" type="text" name='edad' >
+        Foto o Avatar: <input type="file"  name="image" class="input-group mb-3" > 
         <input type="submit" value="Crear">
     </form>
 </body>

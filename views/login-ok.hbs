@@ -6,7 +6,11 @@
         <h3>Nombre: {{nombre}}</h3>
         <h3>Apellido: {{apellido}}</h3>
         <h3>Email: {{email}}</h3>
+        <img src="/images/{{avatar}}" >Avatar: {{avatar}}</h3>
         <button class="btn btn-danger my-5" onclick="logout()">LOGOUT</button>
+        <button class="btn btn-danger my-5" onclick="productos()">CATALOGO</button>
+        <button class="btn btn-danger my-5" onclick="carrito()">CARRITO</button>
+        <button class="btn btn-danger my-5" onclick="perfil()">PERFIL</button>
     </div>
 </div>
 
@@ -16,6 +20,18 @@
     } 
     function logout() {
         console.log('logout');
-        redireccionar('/logout')
+        redireccionar('/api/logout')
+    }
+    function productos() {
+        console.log('productos');
+        redireccionar('/api/productos')
+    }
+    function carrito() {
+        console.log('carrito');
+        redireccionar('/api/carrito')
+    }
+    function perfil() {
+        console.log('perfil')
+        redireccionar('/api/infoUser')
     }
 </script>
